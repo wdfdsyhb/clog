@@ -13,8 +13,6 @@
 #ifndef CLOG_H
 #define CLOG_H
 
-#include <stdio.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -31,7 +29,7 @@ enum clog_level {
 void clog_set_level(int level);
 int  clog_get_level(void);
 
-/* ANSI colors on/off (auto-detected default: on for terminals, off when not). */
+/* ANSI colors: 1=on, 0=off, -1=auto (color real terminals only, the default). */
 void clog_set_colors(int enabled);
 
 /* Optional module tag, printed as [MOD]. NULL clears it. */
@@ -41,12 +39,19 @@ void clog_set_prefix(const char *prefix);
 int  clog_level_enabled(int level);
 
 /* Core function; use the macros below instead of calling this directly. */
+#if defined(__GNUC__)
+void clog_log(int level, const char *file, int line, const char *fmt, ...)
+    __attribute__((format(printf, 4, 5)));
+#else
 void clog_log(int level, const char *file, int line, const char *fmt, ...);
+#endif
 
+/* `level` is evaluated exactly once. */
 #define CLOG_LOG(level, ...) \
     do { \
-        if (clog_level_enabled(level)) \
-            clog_log((level), __FILE__, __LINE__, __VA_ARGS__); \
+        int clog_lvl_ = (level); \
+        if (clog_level_enabled(clog_lvl_)) \
+            clog_log(clog_lvl_, __FILE__, __LINE__, __VA_ARGS__); \
     } while (0)
 
 #ifdef CLOG_DISABLE_DEBUG

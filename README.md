@@ -38,7 +38,8 @@ Output (stderr, colored when it is a terminal):
 
 ## Build
 
-CMake:
+CMake (the `ctest --test-dir` form needs CMake >= 3.20; older versions use
+`ctest` inside the build dir):
 
 ```bash
 cmake -B build && cmake --build build && ctest --test-dir build

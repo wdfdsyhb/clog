@@ -1,5 +1,7 @@
 # clog
 
+[![CI](https://github.com/wdfdsyhb/clog/actions/workflows/build.yml/badge.svg)](https://github.com/wdfdsyhb/clog/actions/workflows/build.yml)
+
 A tiny embedded-style logging library for C99. No dynamic memory, no
 dependencies, ~200 lines of C.
 

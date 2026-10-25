@@ -1,6 +1,12 @@
-# clog
+# clog · 零堆内存的 C 日志库
 
 [![CI](https://github.com/wdfdsyhb/clog/actions/workflows/build.yml/badge.svg)](https://github.com/wdfdsyhb/clog/actions/workflows/build.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![C99](https://img.shields.io/badge/C-C99-blue)
+
+> 一个宏写日志：带时间戳、级别、颜色和 `file:line`，发布时一行编译选项整体剥成零体积。
+>
+> English: Drop-in logging for C99 — timestamps, levels, colors and `file:line`, strippable to zero size at compile time.
 
 A tiny embedded-style logging library for C99. No dynamic memory, no
 dependencies, ~200 lines of C.
@@ -63,3 +69,9 @@ build_vs.bat         # MSVC (VS Developer Prompt)
 ## License
 
 MIT
+
+---
+
+## English
+
+Full English documentation: [README_EN.md](README_EN.md)
